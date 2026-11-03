@@ -70,11 +70,13 @@ Requirements: **Node.js 18 or newer** (for Marp CLI) and the two brand fonts.
 4. Render it:
 
    ```bash
-   npx @marp-team/marp-cli deck.md --theme ../themes/sdsc.css --allow-local-files --images png --pdf
+   npx @marp-team/marp-cli deck.md --theme ../themes/sdsc.css --allow-local-files --images png
+   npx @marp-team/marp-cli deck.md --theme ../themes/sdsc.css --allow-local-files --pdf
    ```
 
    `--allow-local-files` is required because the theme references the local
-   logos and photos.
+   logos and photos. In Marp CLI 4 the image and PDF outputs are separate
+   options, hence the two commands.
 
 ### Using the theme without installing the fonts
 
