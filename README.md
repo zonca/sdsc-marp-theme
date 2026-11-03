@@ -34,7 +34,7 @@ Requirements: **Node.js 18 or newer** (for Marp CLI) and the two brand fonts.
 
    ```bash
    # Linux, system wide
-   wget https://github.com/google/fonts/raw/main/ofl/teko/Teko%5Bwdth%2Cwght%5D.ttf
+   wget https://github.com/google/fonts/raw/main/ofl/teko/Teko%5Bwght%5D.ttf
    wget https://github.com/google/fonts/raw/main/ofl/sourcesans3/SourceSans3%5Bwght%5D.ttf
    sudo mv Teko*.ttf SourceSans3*.ttf /usr/local/share/fonts/
    fc-cache -f
