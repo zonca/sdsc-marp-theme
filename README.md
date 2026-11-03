@@ -7,34 +7,94 @@ at <https://www.sdsc.edu/about/brand.html>, file
 `SDSC-UCSanDiego-HSDSC.potx`).
 
 Everything (colours, fonts, geometry, logos, photos) was extracted from that
-`.potx` file, not eyeballed, so the Markdown deck and the PowerPoint deck look
+`.potx` file, not eyeballed, so a Markdown deck and the PowerPoint deck look
 the same.
 
-## Quick start
+![Preview of the demo deck](preview/screenshot.png)
+
+## Preview
+
+| Format | Link |
+| --- | --- |
+| Interactive HTML preview (11 slides, arrow keys to navigate) | <https://zonca.github.io/sdsc-marp-theme/> |
+| PDF of the demo deck | <https://zonca.github.io/sdsc-marp-theme/deck.pdf> |
+| Source of the demo deck | [`demo/demo.md`](demo/demo.md) |
+| Official template slides, for comparison | [`reference/official/`](reference/official/) |
+
+The preview is published by GitHub Pages from the `preview/` folder
+(`.github/workflows/pages.yml`). To rebuild it locally run
+`./scripts/build_preview.sh`.
+
+## Installation
+
+Requirements: **Node.js 18 or newer** (for Marp CLI) and the two brand fonts.
+
+1. Install the fonts (both free on Google Fonts): **Teko** for headlines and
+   **Source Sans 3** for body text.
+
+   ```bash
+   # Linux, system wide
+   wget https://github.com/google/fonts/raw/main/ofl/teko/Teko%5Bwdth%2Cwght%5D.ttf
+   wget https://github.com/google/fonts/raw/main/ofl/sourcesans3/SourceSans3%5Bwght%5D.ttf
+   sudo mv Teko*.ttf SourceSans3*.ttf /usr/local/share/fonts/
+   fc-cache -f
+   ```
+
+   On macOS: download both families from
+   <https://fonts.google.com/specimen/Teko> and
+   <https://fonts.google.com/specimen/Source+Sans+3> and double-click to
+   install.
+
+2. Copy the theme and the assets into your project:
+
+   ```bash
+   git clone https://github.com/zonca/sdsc-marp-theme.git
+   cp -r sdsc-marp-theme/themes sdsc-marp-theme/assets my-slides/
+   ```
+
+   The `assets/` folder holds the official SDSC logos (colour and white
+   variants) and the brand photographs used by the demo deck. Keep it next to
+   the theme, the CSS refers to it with relative paths.
+
+3. Add the front matter to your deck (`my-slides/deck.md`):
+
+   ```markdown
+   ---
+   marp: true
+   theme: ../themes/sdsc.css
+   paginate: true
+   size: 16:9
+   ---
+   ```
+
+4. Render it:
+
+   ```bash
+   npx @marp-team/marp-cli deck.md --theme ../themes/sdsc.css --allow-local-files --images png --pdf
+   ```
+
+   `--allow-local-files` is required because the theme references the local
+   logos and photos.
+
+### Using the theme without installing the fonts
+
+The deck still renders, but the headlines fall back to a generic sans-serif.
+For a quick check of the layout that is enough; for anything public, install
+the fonts.
+
+### On hosts where Chrome cannot use its sandbox
+
+Some Linux hosts (Ubuntu 23.10 and newer, and other distributions with the
+AppArmor `kernel.apparmor_restrict_unprivileged_userns` restriction) do not
+allow the Chrome sandbox, and Chrome aborts with `No usable sandbox!`. Marp
+CLI cannot pass `--no-sandbox` to Puppeteer, so point it at a small wrapper
+script (see [`scripts/chrome-wrapper.sh`](scripts/chrome-wrapper.sh) in this
+repository):
 
 ```bash
-cd sdsc-marp
-./scripts/render.sh                 # renders demo/demo.md to out/*.png and out/demo.pdf
-./scripts/render.sh slides/my.md    # renders any deck with the same theme
+export CHROME_PATH="$PWD/scripts/chrome-wrapper.sh"
+npx @marp-team/marp-cli deck.md --theme ../themes/sdsc.css --allow-local-files --images png
 ```
-
-To use the theme in your own deck, put this in the front matter of the
-Markdown file and keep the theme CSS one directory above the deck (the paths
-below assume the deck lives in `slides/`, next to `themes/` and `assets/`):
-
-```markdown
----
-marp: true
-theme: ../themes/sdsc.css
-paginate: true
-size: 16:9
----
-```
-
-Fonts: **Teko** (headlines) and **Source Sans 3** (body). Both are brand
-approved and free from Google Fonts. They are already installed on this
-machine (`/usr/local/share/fonts/Teko.ttf`, `/usr/local/share/fonts/SourceSans3.ttf`);
-on another machine install them or the deck falls back to a sans-serif.
 
 ## Slide classes
 
@@ -90,26 +150,19 @@ Geometry, converted from the 12192000 x 6858000 EMU PowerPoint master to the
 ## Repository layout
 
 ```
-sdsc-marp/
+sdsc-marp-theme/
 ├── assets/                 logos (SVG, colour and white variants) and brand photos
 ├── demo/demo.md            11 slide deck exercising every layout
 ├── out/                    rendered PNG and PDF of the demo deck
+├── preview/                published preview: index.html, deck.pdf, screenshot.png
 ├── reference/official/     the 10 slides of the official template, rendered for comparison
+├── scripts/build_preview.sh    rebuilds the published preview
 ├── scripts/chrome-wrapper.sh   Chrome launcher that adds --no-sandbox
-├── scripts/render.sh       render any deck with the theme
-└── themes/sdsc.css         the theme
+├── scripts/contact_sheet.py    builds the contact sheet screenshot
+├── scripts/inline_assets.py    inlines the assets into the preview HTML
+├── scripts/render.sh           renders any deck with the theme
+└── themes/sdsc.css             the theme
 ```
-
-## Rendering on this machine
-
-Chrome cannot start with its sandbox on this host (AppArmor blocks
-unprivileged user namespaces on Ubuntu 23.10+), and Marp CLI has no flag to
-pass `--no-sandbox` to Puppeteer. `scripts/chrome-wrapper.sh` wraps Chrome with
-that flag and is used through `CHROME_PATH`; `scripts/render.sh` sets it
-automatically. Override the browser with `MARP_CHROME_BIN=/path/to/chrome`.
-
-`--allow-local-files` is required because the theme references local assets
-(logos and photos) from the CSS.
 
 ## Notes and deviations from the PowerPoint template
 
@@ -130,3 +183,7 @@ Official template, logos and photographs: San Diego Supercomputer Center
 brand guide, <https://www.sdsc.edu/about/brand.html>. Please follow the brand
 rules when reusing the assets (do not stretch, recolour or alter the wordmark,
 keep the clear space, and use the white wordmark on dark backgrounds).
+
+The theme code is MIT licensed (see [`LICENSE`](LICENSE)). The logos and
+photographs remain the property of the San Diego Supercomputer Center and the
+University of California, San Diego, and their use follows the brand guide.
