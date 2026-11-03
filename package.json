@@ -1,0 +1,14 @@
+{
+  "name": "sdsc-marp-theme",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Marp theme reproducing the official SDSC / UC San Diego HSDSC slide template",
+  "license": "MIT",
+  "scripts": {
+    "render": "./scripts/render.sh demo/demo.md",
+    "render:pdf": "./scripts/render.sh demo/demo.md"
+  },
+  "devDependencies": {
+    "@marp-team/marp-cli": "^4.5.1"
+  }
+}

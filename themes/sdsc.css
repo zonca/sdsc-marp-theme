@@ -1,0 +1,398 @@
+/*!
+ * @theme sdsc
+ * @auto-scaling fittingHeader
+ *
+ * Official SDSC / UC San Diego Halıcıoğlu School of Data Science and Computing
+ * slide theme for Marp.
+ *
+ * Derived from the official PowerPoint template published on
+ * https://www.sdsc.edu/about/brand.html (file SDSC-UCSanDiego-HSDSC.potx),
+ * so geometry, colours and typography follow that template:
+ *
+ *   navy          #182B49   (PMS 2767, body text and reverse background)
+ *   blue          #00629B   (slide titles on light backgrounds)
+ *   gold          #C69214   (PMS 1245, wordmark gold)
+ *   bright gold   #FFCD00   (emphasis and links on reverse slides)
+ *   footer gray   #747678
+ *   light gray    #E7E6E6   (body text on reverse slides)
+ *
+ * Fonts: Teko (headlines) and Source Sans 3 (body), both brand approved and
+ * available on Google Fonts.
+ *
+ * Geometry of the PowerPoint master, converted to 1280x720 px:
+ *   left/right margin 88px, title band starts at 38px and is 154px tall
+ *   (content starts at 192px), footer bar 52.5px tall with the SDSC wordmark
+ *   at 46px from the left and the UC San Diego / HSDSC logo at 46px from the
+ *   right, both 35px tall.
+ */
+
+:root {
+  --sdsc-navy: #182b49;
+  --sdsc-blue: #00629b;
+  --sdsc-gold: #c69214;
+  --sdsc-bright-gold: #ffcd00;
+  --sdsc-footer-gray: #747678;
+  --sdsc-light-gray: #e7e6e6;
+}
+
+section {
+  width: 1280px;
+  height: 720px;
+  box-sizing: border-box;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding: 38px 88px 68px;
+  overflow: hidden;
+  background-color: #ffffff;
+  color: var(--sdsc-navy);
+  font-family: "Source Sans 3", "Source Sans Pro", "Helvetica Neue", sans-serif;
+  font-size: 29px;
+  line-height: 0.95;
+  letter-spacing: 0;
+}
+
+/* ---------------------------------------------------------------- footer --- */
+
+section::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 52.5px;
+  z-index: 3;
+  background-color: var(--sdsc-footer-gray);
+  background-image: url("../assets/sdsc-wordmark-white.svg"),
+    url("../assets/ucsd-hsdsc-white.svg");
+  background-repeat: no-repeat, no-repeat;
+  background-position: 46px center, right 46px center;
+  background-size: 192px auto, 132px auto;
+}
+
+/* --------------------------------------------------------------- headings --- */
+
+section h1 {
+  flex: none;
+  display: flex;
+  align-items: center;
+  height: 154px;
+  margin: 0;
+  padding: 0;
+  font-family: "Teko", "Oswald", "Arial Narrow", sans-serif;
+  font-weight: 600;
+  font-size: 72px;
+  line-height: 0.8;
+  letter-spacing: 0;
+  color: var(--sdsc-blue);
+}
+
+section h1 strong,
+section h1 em {
+  font-weight: inherit;
+  color: inherit;
+}
+
+section h2 {
+  margin: 0 0 0.3em;
+  font-family: "Teko", "Oswald", "Arial Narrow", sans-serif;
+  font-weight: 600;
+  font-size: 48px;
+  line-height: 0.9;
+  color: var(--sdsc-blue);
+}
+
+section h3,
+section h4 {
+  margin: 0 0 0.3em;
+  font-family: "Teko", "Oswald", "Arial Narrow", sans-serif;
+  font-weight: 600;
+  font-size: 38px;
+  line-height: 1;
+  color: var(--sdsc-navy);
+}
+
+/* ------------------------------------------------------------------ text --- */
+
+section p,
+section > ul,
+section > ol,
+section > blockquote,
+section > table,
+section > pre {
+  margin: 0 0 0.45em;
+}
+
+section p:last-child,
+section ul:last-child,
+section ol:last-child {
+  margin-bottom: 0;
+}
+
+section strong {
+  font-weight: 700;
+  color: var(--sdsc-blue);
+}
+
+section em {
+  font-style: italic;
+  color: inherit;
+}
+
+section a {
+  color: var(--sdsc-blue);
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 3px;
+}
+
+section ul,
+section ol {
+  padding-left: 36px;
+}
+
+section ul li,
+section ol li {
+  margin: 0 0 0.2em;
+}
+
+section ul li:last-child,
+section ol li:last-child {
+  margin-bottom: 0;
+}
+
+section ul > li::marker {
+  content: "\2022\00a0\00a0";
+  font-size: 0.8em;
+  color: currentColor;
+}
+
+section ul ul,
+section ol ol {
+  font-size: 0.85em;
+  margin-top: 0.2em;
+}
+
+section blockquote {
+  padding: 0 0 0 0.6em;
+  border-left: 6px solid var(--sdsc-gold);
+  font-style: italic;
+}
+
+section code {
+  font-family: "Roboto Mono", "DejaVu Sans Mono", monospace;
+  font-size: 0.72em;
+  background: #f2f3f4;
+  color: var(--sdsc-navy);
+  padding: 0.1em 0.25em;
+  border-radius: 2px;
+}
+
+section pre {
+  font-size: 0.62em;
+  line-height: 1.3;
+  background: #f2f3f4;
+  border-left: 6px solid var(--sdsc-blue);
+  padding: 0.6em 0.8em;
+}
+
+section pre code {
+  font-size: 1em;
+  background: none;
+  padding: 0;
+}
+
+section table {
+  border-collapse: collapse;
+  font-size: 0.72em;
+  line-height: 1.25;
+}
+
+section table th {
+  font-family: "Teko", "Oswald", sans-serif;
+  font-weight: 600;
+  font-size: 1.15em;
+  color: #ffffff;
+  background: var(--sdsc-navy);
+  padding: 0.25em 0.6em;
+  text-align: left;
+}
+
+section table td {
+  padding: 0.22em 0.6em;
+  border-bottom: 1px solid #d7d8da;
+}
+
+/* ----------------------------------------------------------------- images --- */
+
+section img {
+  max-width: 100%;
+}
+
+/* --------------------------------------------------------------- variants --- */
+
+/* Reverse: navy slide, white title, light gray body, gold emphasis. */
+
+section.reverse {
+  background-color: var(--sdsc-navy);
+  color: var(--sdsc-light-gray);
+}
+
+section.reverse h1,
+section.reverse h2,
+section.reverse h3,
+section.reverse h4 {
+  color: #ffffff;
+}
+
+section.reverse strong,
+section.reverse a {
+  color: var(--sdsc-bright-gold);
+}
+
+section.reverse code {
+  background: rgba(255, 255, 255, 0.12);
+  color: #ffffff;
+}
+
+section.reverse pre {
+  background: rgba(0, 0, 0, 0.25);
+  border-left-color: var(--sdsc-bright-gold);
+}
+
+section.reverse table th {
+  background: #ffffff;
+  color: var(--sdsc-navy);
+}
+
+section.reverse table td {
+  border-bottom-color: rgba(255, 255, 255, 0.25);
+}
+
+/* Title slide: official dusk photo of the SDSC building, white type and the
+   co-branded SDSC + UC San Diego logos in the lower right corner. */
+
+section.title {
+  padding: 195px 0 0 64px;
+  justify-content: flex-start;
+  color: #ffffff;
+  background-color: var(--sdsc-navy);
+  background-image: url("../assets/sdsc-wordmark-white.svg"),
+    url("../assets/ucsd-hsdsc-white.svg"), url("../assets/sdsc-title-bg.jpg");
+  background-repeat: no-repeat, no-repeat, no-repeat;
+  background-position: 1031px 496px, 1031px 618px, center center;
+  background-size: 186px auto, 186px auto, cover;
+}
+
+section.title::before {
+  display: none;
+}
+
+section.title h1 {
+  height: auto;
+  width: 864px;
+  margin: 0 0 24px;
+  font-size: 117px;
+  line-height: 0.8;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+section.title h2,
+section.title p {
+  width: 864px;
+  margin: 0;
+  font-family: "Source Sans 3", "Source Sans Pro", sans-serif;
+  font-size: 32px;
+  font-weight: 600;
+  line-height: 1.2;
+  color: #ffffff;
+}
+
+section.title strong {
+  color: var(--sdsc-bright-gold);
+}
+
+/* Section header: navy divider slide with a gold subtitle. */
+
+section.section {
+  padding-top: 179px;
+  background-color: var(--sdsc-navy);
+  color: var(--sdsc-light-gray);
+}
+
+section.section h1 {
+  height: auto;
+  margin: 0 0 20px;
+  font-size: 80px;
+  line-height: 0.9;
+  color: #ffffff;
+}
+
+section.section p {
+  margin: 0;
+  font-size: 32px;
+  font-weight: 600;
+  line-height: 1.2;
+  color: var(--sdsc-bright-gold);
+}
+
+/* Big statement: one large centred sentence. */
+
+section.statement {
+  justify-content: center;
+  padding-bottom: 100px;
+  background-color: var(--sdsc-navy);
+  color: #ffffff;
+}
+
+section.statement h1 {
+  height: auto;
+  max-width: 1060px;
+  margin: 0 auto;
+  font-size: 104px;
+  line-height: 0.9;
+  text-align: center;
+  color: #ffffff;
+}
+
+section.statement strong {
+  color: var(--sdsc-bright-gold);
+}
+
+/* Lead paragraph (Marp convention): bigger, centred-ish text, no title band. */
+
+section.lead h1,
+section.lead h2 {
+  height: auto;
+  font-size: 84px;
+}
+
+/* Two equal columns, for text that has to sit side by side. */
+
+section .columns {
+  display: flex;
+  gap: 72px;
+}
+
+section .columns > div {
+  flex: 1 1 0;
+  min-width: 0;
+}
+
+/* Pagination, kept on the footer bar and out of the way of the logos. */
+
+section[data-marpit-pagination]::after {
+  color: #ffffff;
+  font-size: 16px;
+  opacity: 0.9;
+  padding: 0;
+  right: 196px;
+  bottom: 16px;
+  z-index: 4;
+}
+
+section.title[data-marpit-pagination]::after {
+  display: none;
+}
