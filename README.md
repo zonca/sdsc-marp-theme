@@ -25,6 +25,9 @@ The preview is published by GitHub Pages from the `preview/` folder
 (`.github/workflows/pages.yml`). To rebuild it locally run
 `./scripts/build_preview.sh`.
 
+There is also a [blog post about how the theme was
+built](https://github.com/zonca/zonca.dev/pull/152) on zonca.dev.
+
 ## Installation
 
 Requirements: **Node.js 18 or newer** (for Marp CLI) and the two brand fonts.
