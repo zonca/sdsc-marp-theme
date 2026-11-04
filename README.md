@@ -125,6 +125,9 @@ Background images use the standard Marp keywords, for example
 and the footer bar is drawn on top of it, exactly like the "Image right + copy"
 layout of the PowerPoint template.
 
+The theme draws its own footer bar, so the Marp `header` and `footer`
+directives are not used and are hidden by the theme.
+
 ## Design tokens
 
 Taken from `ppt/theme/theme1.xml` and the slide master of the official

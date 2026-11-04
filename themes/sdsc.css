@@ -397,6 +397,15 @@ section .cols > div {
   min-width: 0;
 }
 
+/* The theme draws its own footer bar and title band, so the Marp "header" and
+   "footer" directives are not used. They are hidden so that they cannot
+   overlap the title band or the footer bar. */
+
+section header,
+section footer {
+  display: none;
+}
+
 /* Pagination, kept on the footer bar and out of the way of the logos. */
 
 section[data-marpit-pagination]::after {
