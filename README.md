@@ -117,7 +117,8 @@ Add the class with a Marp directive at the top of the slide:
 | `section` | Navy divider slide, white 60 pt title with a gold subtitle |
 | `statement` | Navy slide with one large centred sentence (the "Big Bold Statement" layout) |
 | `lead` | Bigger title, no fixed title band |
-| `columns` | Helper class for `<div class="columns">` two-column layouts |
+| `dense` | Smaller body text, for slides with more content |
+| `columns` (or `cols`) | Helper class for `<div class="columns">` two-column layouts |
 
 Background images use the standard Marp keywords, for example
 `![bg right:45%](../assets/photo-datacenter.jpg)`. The image runs edge to edge

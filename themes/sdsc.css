@@ -369,14 +369,30 @@ section.lead h2 {
   font-size: 84px;
 }
 
+/* Dense slide (Marp convention): smaller body text for slides with more content. */
+
+section.dense {
+  font-size: 25px;
+}
+
+section.dense h1 {
+  font-size: 60px;
+}
+
+section.dense h2 {
+  font-size: 42px;
+}
+
 /* Two equal columns, for text that has to sit side by side. */
 
-section .columns {
+section .columns,
+section .cols {
   display: flex;
   gap: 72px;
 }
 
-section .columns > div {
+section .columns > div,
+section .cols > div {
   flex: 1 1 0;
   min-width: 0;
 }
