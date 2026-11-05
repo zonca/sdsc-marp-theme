@@ -2,7 +2,9 @@
 """Inline the local assets referenced by a Marp HTML export as data URIs.
 
 Marp CLI keeps the theme background images (logos, photos) as relative paths,
-which only resolve if the HTML file sits next to the ``assets/`` folder. The
+which only resolve if the HTML file sits next to the ``assets/`` folder.
+Assets are looked up next to the HTML file, then in this repository's own
+``assets/``, so decks rendered outside the repository work too. The
 published preview has to be a single self-contained file, so every
 ``assets/<name>`` reference is replaced by a base64 data URI.
 
@@ -25,7 +27,9 @@ def data_uri(path: Path) -> str:
 
 
 def resolve(root: Path, html_dir: Path, relative: str) -> Path | None:
-    for candidate in (html_dir / relative, root / relative.lstrip("./")):
+    theme_root = Path(__file__).resolve().parent.parent
+    stripped = relative.lstrip("./")
+    for candidate in (html_dir / relative, root / stripped, theme_root / stripped):
         if candidate.is_file():
             return candidate
     return None
